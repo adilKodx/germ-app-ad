@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'mixins';
+@import 'vars';
+@import 'headers';
+@import 'sliders';
+@import 'fonts/fonts';
+@import 'forms';
+@import 'errors';
+@import 'nav-bar';
+@import 'tooltips';
+@import 'transitions';
+@import 'utilities';
+@import 'page';
+@import 'fullpage-styles';

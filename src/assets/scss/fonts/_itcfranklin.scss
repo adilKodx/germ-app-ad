@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'ITC Franklin Gothic';
+  src: url('/static/fonts/itcfranklin/ITCFranklinGothicStd-Med.eot?') format('eot'),
+  url('/static/fonts/itcfranklin/ITCFranklinGothicStd-Med.woff') format('woff'),
+  url('/static/fonts/itcfranklin/ITCFranklinGothicStd-Med.ttf') format('truetype'),
+  url('/static/fonts/itcfranklin/ITCFranklinGothicStd-Med.svg#andesregular') format('svg');
+  font-weight: 600;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'ITC Franklin Gothic';
+  src: url('/static/fonts/itcfranklin/ITCFranklinGothicStd-Book.eot?') format('eot'),
+  url('/static/fonts/itcfranklin/ITCFranklinGothicStd-Book.woff') format('woff'),
+  url('/static/fonts/itcfranklin/ITCFranklinGothicStd-Book.ttf') format('truetype'),
+  url('/static/fonts/itcfranklin/ITCFranklinGothicStd-Book.svg#andesregular') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'ITC Franklin Gothic';
+  src: url('/static/fonts/itcfranklin/ITCFranklinGothicStd-Hvy.eot?') format('eot'),
+  url('/static/fonts/itcfranklin/ITCFranklinGothicStd-Hvy.woff') format('woff'),
+  url('/static/fonts/itcfranklin/ITCFranklinGothicStd-Hvy.ttf') format('truetype'),
+  url('/static/fonts/itcfranklin/ITCFranklinGothicStd-Hvy.svg#andesregular') format('svg');
+  font-weight: 700;
+  font-style: normal;
+}

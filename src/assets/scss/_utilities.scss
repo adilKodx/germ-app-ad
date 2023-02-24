@@ -1,0 +1,85 @@
+body {
+  //background: colour('grey','light');
+  animation: fadein .5s;
+  height: 100%;
+}
+
+#app {
+  @extend .font-style-2;
+  @apply text-gray-400;
+  @apply text-base;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.triple-circle {
+  position: fixed;
+  bottom: -110px;
+  left: -200px;
+  z-index: -1;
+
+  @include sm {
+    bottom: -500px;
+    left: -600px;
+  }
+}
+
+.font-style-1 {
+  font-family: $font-headers;
+}
+.font-style-2 {
+  font-family: $font-body;
+}
+
+.top-nav {
+  margin-top: nav-height('xlg');
+}
+
+hr {
+  @apply border-gray-100;
+  @apply mb-4;
+}
+
+.layout.center {
+  margin: auto;
+
+  @include xlg {
+    padding: 0;
+    max-width: 590px;
+  }
+}
+
+.bold {
+  @apply font-semibold;
+
+  &-dark {
+    @apply font-semibold;
+    @apply text-black;
+
+    &.-warn {
+      @apply text-red-100;
+    }
+  }
+}
+
+p {
+  line-height: 1.8em;
+}
+
+.truncate {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.top-1\/2 {
+  top: 50%;
+}
+
+@responsive {
+  .translateY--11px {
+    transform: translateY(-11px);
+  }
+}

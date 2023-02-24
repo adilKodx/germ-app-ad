@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'Pines';
+  src: url('/static/fonts/pines/Pines-Black.eot');
+  src: url('/static/fonts/pines/Pines-Black.eot?#iefix') format('embedded-opentype'),
+  url('/static/fonts/pines/Pines-Black.woff') format('woff'),
+  url('/static/fonts/pines/Pines-Black.ttf') format('truetype'),
+  url('/static/fonts/pines/Pines-Black.svg#andesregular') format('svg');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pines';
+  src: url('/static/fonts/pines/pines-bold-webfont.eot');
+  src: url('/static/fonts/pines/pines-bold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('/static/fonts/pines/pines-bold-webfont.woff') format('woff'),
+  url('/static/fonts/pines/pines-bold-webfont.ttf') format('truetype'),
+  url('/static/fonts/pines/pines-bold-webfont.svg#andesregular') format('svg');
+  font-weight: 200;
+  font-style: normal;
+}
+
+
+

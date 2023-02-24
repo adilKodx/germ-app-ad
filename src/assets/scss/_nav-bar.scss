@@ -1,0 +1,150 @@
+.nav-bar {
+  z-index: 10080;
+  position: relative;
+
+
+  .nav-container {
+    transition:  transform ease 0.3s;
+
+    &.-hide-nav {
+      transform: translateY(-100%);
+
+      @include sm {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+.router-link-active {
+  //font-weight: font-weight('book');
+  transition: all ease 0.3s;
+  @apply text-black;
+}
+
+.logo {
+  height: 35px;
+
+  @include md {
+    height: 60px;
+  }
+
+  img {
+    display: block;
+    width: auto;
+  }
+
+  .desktop-image {
+      height: auto;
+  }
+}
+
+.mobile-nav {
+  top: 0;
+  height: 100vh;
+  width: 100%;
+
+  @include sm {
+    width: 55%;
+  }
+
+  @include md {
+    width: 45%;
+  }
+}
+
+
+body.nav-open {
+  overflow: hidden;
+  padding-right: 15px;
+
+  .nav-inner  {
+    padding-right: 15px;
+  }
+}
+
+.progress-mark {
+  margin-top: -3px;
+  width: 9px;
+  height: 9px;
+
+  &.-active {
+    @apply bg-red-300;
+
+    @extend .-delay;
+  }
+}
+
+.nav-progress {
+  height: 2px;
+}
+
+.progress-mark-2 {
+  left: 50%;
+}
+
+.progress-mark-3 {
+  left: 100%;
+}
+
+.progress-mark-4 {
+  left: 100%;
+}
+
+.link-container {
+  a {
+    display: block;
+    white-space: nowrap;
+    transform: translateX(-50%);
+  }
+}
+
+.mode-give {
+  .progress-mark-2 {
+    left: 0%;
+  }
+
+  .progress-mark-3 {
+    left: 50%;
+  }
+
+
+  .link-container {
+    a {
+      display: block;
+      white-space: nowrap;
+      transform: translateX(-40%);
+    }
+  }
+}
+
+.hide-scrollbar {
+  width: 100%;
+  overflow: hidden;
+  height: 60px;
+
+  .line-nav-mob-container {
+    @apply overflow-x-scroll overflow-y-hidden;
+    padding:30px 10px 60px;
+
+    @include sm {
+      padding:30px 30px 60px 30px;
+      @apply -mx-4;
+    }
+
+    .mobile-line-nav {
+      width: 80%;
+      margin: auto;
+
+      @include sm {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.cart-icon-container {
+  @include lg {
+    display: none;
+  }
+}
