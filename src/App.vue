@@ -1,5 +1,5 @@
 <template>
-  <div
+  <div 
     id="app"
     style="overflow: hidden !important"
     class="w-full h-full"
