@@ -1,0 +1,161 @@
+.step {
+  //@apply .text-sm;
+  @apply .text-gray-200;
+  @apply .mb-8;
+  @apply font-semibold;
+}
+
+.page-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &.-full-height {
+    //min-height: calc(100vh - #{nav-height('sm')});
+    min-height: 100vh;
+
+    @include md {
+      min-height: calc(100vh - #{nav-height('md')});
+    }
+
+    @include lg {
+      min-height: calc(100vh - #{nav-height('lg')});
+    }
+
+    @include xlg {
+      min-height: calc(100vh - #{nav-height('xlg')});
+    }
+  }
+
+  @apply px-6;
+  @apply py-12;
+
+  @include sm {
+    @apply py-12;
+  }
+
+  @include xlg {
+    @apply py-20;
+    @apply px-0;
+  }
+
+  &.-first {
+    margin-top: nav-height('sm');
+
+    @include md {
+      margin-top: nav-height('lg');
+    }
+
+    &-desktop {
+      @include md {
+        margin-top: nav-height('lg');
+      }
+    }
+  }
+
+  &.-z-40 {
+    z-index: 40 !important;
+  }
+}
+
+.pt-nav-height {
+  padding-top: nav-height('sm');
+
+  @include md {
+    padding-top: nav-height('xlg');
+  }
+}
+
+.layout {
+  .center {
+    @include md {
+      margin-top: nav-height('xlg');
+    }
+  }
+
+  .left, .right {
+
+    .sticky {
+      top: nav-height('xlg')
+    }
+  }
+}
+
+.scroll-area {
+  height: calc(100vh - #{nav-height('xlg')});;
+}
+
+.donation-container {
+  //height: calc(100vh - #{nav-height('sm')});
+  //overflow-y: auto;
+}
+
+.remove-item {
+  cursor: pointer;
+  @apply text-xs;
+  @apply text-right;
+  @apply text-gray-500;
+  @apply font-semibold;
+  display: inline-block;
+}
+
+.donation-sidebar {
+  @include lg {
+    max-width: 335px
+  }
+}
+
+.progress-calculator {
+  @include lg {
+    max-width: 310px;
+  }
+}
+
+.body-text {
+  @apply text-sm;
+
+  @include sm {
+    @apply text-base;
+  }
+}
+
+.regular-donation-container, .pension-container {
+  position: relative;
+  z-index: 70;
+}
+
+.basket-border {
+  width: 1px;
+  left: 0;
+  top:0;
+  transition: opacity 0.5s ease;
+  height: 200vh;
+  margin-top: -50vh;
+  display: none;
+
+  @include md {
+    display: block;
+  }
+}
+
+.ps-container > .ps__rail-y {
+  opacity: 1 !important;
+
+  &:hover, &:active {
+    background: #eeeeee61;
+  }
+
+  .ps__thumb-y {
+    background: #e5f0f9;
+  }
+}
+
+.single-page {
+
+  @include md {
+    //height: 100vh;
+    //overflow: hidden;
+  }
+}

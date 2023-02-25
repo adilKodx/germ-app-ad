@@ -10,7 +10,7 @@
       v-if="skip && additionalBtn.text.length == 0"
       class="w-full sm:w-1/2 pr-4"
     >
-      <btn @click="prevScrollItem"> zuruck</btn>
+      <btn @click="prevScrollItem"> Terug</btn>
     </div>
 
     <div
@@ -35,8 +35,65 @@
         /> -->
       </btn>
     </div>
+    <div
+      class="w-full sm:w-1/2 continue-btn mb-4"
+      :class="{ '-align-left': this.align == 'left' }"
+      v-if="isMobile"
+    >
+      <btn
+        :id="gtagId"
+        @click="nextScrollItem"
+        class="next-btn text-red-300"
+        :class="{
+          '-active': active && activebutton,
+          'pointer-events-none': !active,
+          'md:ml-2': additionalBtn.text.length == 0,
+        }"
+      >
+        <span
+          :id="gtagId + '-text'"
+          :style="[additionalBtn.size == 'sm' ? { 'padding-left': '5px' } : {}]"
+          >{{ text }}</span
+        >
+      </btn>
+    </div>
 
-    <transition name="fade">
+    <transition name="fade" v-if="isMobile">
+      <div
+        class="w-full"
+        :class="{
+          'sm:w-9/12': additionalBtn.size == 'large',
+          'sm:w-1/2': additionalBtn.size !== 'large',
+        }"
+        v-if="additionalBtn.conditional"
+        :style="[
+          additionalBtn.size == 'sm' || additionalBtn.size == 'large'
+            ? { 'margin-right': '50px' }
+            : {},
+        ]"
+      >
+        <btn
+          v-if="additionalBtn.text.length > 0"
+          :size="additionalBtn.size"
+          @click="additionalPath"
+          :id="additionalBtn.gtagId"
+          class="mb-4 sm:mb-0"
+          :class="{
+            '-active': additionalBtn.conditional && additionalBtn.active,
+            'text-red-300': !additionalBtn.conditional,
+            'pointer-events-none': !additionalBtn.conditional,
+            'sm:mr-2': this.align !== 'left',
+            'sm:ml-2': this.align === 'left',
+          }"
+        >
+          <span :id="additionalBtn.gtagId" style="white-space: nowrap">{{
+            additionalBtn.text
+          }}</span>
+        </btn>
+      </div>
+    </transition>
+
+    <transition name="fade" v-if="!isMobile">
       <div
         class="w-full"
         :class="{
@@ -74,6 +131,7 @@
     <div
       class="w-full sm:w-1/2 continue-btn"
       :class="{ '-align-left': this.align == 'left' }"
+      v-if="!isMobile"
     >
       <btn
         :id="gtagId"
@@ -116,7 +174,7 @@ export default {
   props: {
     text: {
       type: String,
-      default: "Weiter",
+      default: "Ga verder",
     },
     skip: {
       type: Boolean,
@@ -140,6 +198,10 @@ export default {
     },
     active: {
       type: Boolean,
+    },
+    isMobile: {
+      type: Boolean,
+      default: false
     },
     additionalBtn: {
       type: Object,
@@ -260,7 +322,6 @@ export default {
                 // uncomment it  
                 const convert = jsonToQuery(convertPayload) ;
                 //console.log('hello url')
-                console.log(convert)
               // console.log('http://go.nzf.org.uk/secure/?fast=&'+convert)
               //  window.location.href = 'http://go.nzf.org.uk/secure/?fast=&'+convert;
               window.location.href = 'http://go.nzf.org.uk/secure/?'+convert;

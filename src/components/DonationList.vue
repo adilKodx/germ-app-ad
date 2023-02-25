@@ -14,7 +14,7 @@
       </p>
     </div>
     <div class="mb-8" v-if="isSadaqah">
-      <h3 class="header header-2 mb-4">
+      <h3 class="header header-2 mb-2">
         {{ getLabel('How you can help NZF go even further') }}
       </h3>
       <!-- Change sub-text to sm:text-lg -->
@@ -186,7 +186,7 @@
               >
                 <template v-slot:toolTip>
                   <tool-tip
-                    :text="getLabel('Sadaqah Tool Tip 12421')"
+                    :text="getLabel('Sadaqah Tool Tip')"
                     class="flex justify-start"
                     :width="'50%'"
                   >
@@ -194,7 +194,7 @@
                       class="bg-gray-200 w-4 h-4 flex justify-center items-center rounded-full cursor-pointer relative z-50"
                     >
                       <span
-                        class="icon-container -blue h-full overflow-hidden h-full"
+                        class="icon-container -blue h-full overflow-hidden"
                       >
                         <i
                           class="ion-ios-help text-white help-icon h-full flex items-center"

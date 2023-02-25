@@ -3,7 +3,7 @@
     <div class="flex flex-col mb-2">
       <div class="remaining-money text-2xl flex flex-row items-center mb-8">
         <span class="flex items-end sm:items-center sm:-mb-2 pr-4">
-          <span class="bold-dark ">{{ currencyFormat(remainingMoney) }}</span>
+          <span class="header-6">{{ currencyFormat(remainingMoney) }}</span>
           <div class="text-sm text-gray-300 ml-1 mb-2 sm:mb-0">van</div>
         </span>
 
@@ -14,7 +14,7 @@
               class="w-full text-center border border-gray-100 rounded
                       mb-2 sm:mb-0 mx-2
                       py-2
-                      zakat-input bold-dark donation-chart-update -currency"
+                      zakat-input header-6 donation-chart-update -currency"
               @keyup="updateSplit"
               v-model="initZakat"
             />

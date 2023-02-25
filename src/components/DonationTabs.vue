@@ -24,12 +24,12 @@
           class="relative flex items-center overflow-hidden bg-white border-t border-l border-r border-gray-200">
           <div class="flex items-center justify-center h-12 lg:gap-4 gap-14 xs:gap-5 lg:px-6 px-2 w-full text-sm"
           >
-            <p v-if="sadaqah == true" class="header text-center font-bold" :class="{'text-black': activeTab === 'Zakat'}">Zakat <span class="block">{{ format(singleDonationsAmount.zakat) }} </span> </p>
-            <p v-if="sadaqah == false" class="header text-center font-bold" :class="{'text-black': activeTab === 'Sadaqah'}">Sadaqah  <span class="block">{{ format(singleDonationsAmount.sadaqah) }}</span> </p>
-            <p  class="header text-center font-bold" :class="{'text-black': activeTab === 'Fidyah/Kaffarah'}">Fidyah <span class="block ">{{ format(singleDonationsAmount.fidyah) }}
+            <p v-if="sadaqah == true" class="header-6 text-center font-bold" :class="{'text-black': activeTab === 'Zakat'}">Zakat <span class="block">{{ format(singleDonationsAmount.zakat) }} </span> </p>
+            <p v-if="sadaqah == false" class="header-6 text-center font-bold" :class="{'text-black': activeTab === 'Sadaqah'}">Sadaqah  <span class="block">{{ format(singleDonationsAmount.sadaqah) }}</span> </p>
+            <p  class="header-6 text-center font-bold" :class="{'text-black': activeTab === 'Fidyah/Kaffarah'}">Fidyah <span class="block ">{{ format(singleDonationsAmount.fidyah) }}
             </span>
           </p>
-            <p  class="header text-center font-bold" :class="{'text-black': activeTab === 'Riba'}">Riba<span class="block"> {{ format(singleDonationsAmount.riba) }}</span></p>
+            <p  class="header-6 text-center font-bold" :class="{'text-black': activeTab === 'Riba'}">Riba<span class="block"> {{ format(singleDonationsAmount.riba) }}</span></p>
           </div>
         </div>
         <div

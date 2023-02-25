@@ -22,7 +22,7 @@
 
     <div class="flex justify-between h-12">
       <div class="flex flex-col">
-        <span class="bold-dark cursor-pointer" @click="setRouteTab(1)"
+        <span class="header-6 cursor-pointer" @click="setRouteTab(1)"
           >Zakat</span
         >
 
@@ -34,7 +34,7 @@
       </div>
 
       <div>
-        <span class="fix-zakat-spacing bold-dark">{{ localZakat }}</span>
+        <span class="fix-zakat-spacing header-6">{{ localZakat }}</span>
 
         <div
           class="cursor-pointer text-xs text-right text-gray-500 font-semibold"

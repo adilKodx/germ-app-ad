@@ -1,6 +1,6 @@
 <template>
   <div class="overflow-y-auto donation-sidebar text-sm" v-if="checksingleDonationAmount === true">
-    <h3 class="text-xl mb-6 header-6">{{ getLabel("My Donation Basket") }}</h3>
+    <div class="text-xl mb-6 header-6">{{ getLabel("My Donation Basket") }}</div>
     <!--<transition name="fade">-->
     <div v-if="singleDonations.length > 0">
       <div class="bg-white shadow-lg rounded mb-4 overflow-hidden">
@@ -26,7 +26,7 @@
             <div class="flex justify-between w-full">
               <div class="flex flex-col">
                 <span
-                  class="bold-dark cursor-pointer"
+                  class="header-6 cursor-pointer"
                   @click="setRouteTab(donation.name)"
                 >
                   {{ donation.name }}
@@ -49,7 +49,7 @@
 
               <div>
                 <div style="text-align: end !important">
-                  <span class="bold-dark">
+                  <span class="header-6">
                     {{ format(donation.amount) }}
                   </span>
                 </div>

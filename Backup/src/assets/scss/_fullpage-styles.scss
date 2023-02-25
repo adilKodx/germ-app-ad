@@ -1,0 +1,19 @@
+.fp-section {
+  .section-inner {
+    @include md {
+      opacity: 0 !important;
+      transition: all ease 0.8s;
+      transition-delay: 0.5s;
+    }
+  }
+}
+
+.fp-section.active {
+  .section-inner {
+    opacity: 1 !important;
+  }
+}
+
+.fp-tableCell {
+  display: block !important;
+}

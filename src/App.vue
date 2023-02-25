@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     id="app"
     style="overflow: hidden !important"
     class="w-full h-full"
@@ -71,7 +71,7 @@
 import NavBar from "./components/NavBar";
 import Sticky from "./components/Sticky";
 import queryString from "query-string";
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import { mapFields } from "vuex-map-fields";
 import {
   paths,
@@ -167,6 +167,9 @@ export default {
       "donation.donationTypes",
       "user.userZakat",
       "donation.donationSplit",
+    ]),
+    ...mapGetters([
+      "getSingleDonationsCheck",
     ]),
     paths() {
       return paths;
@@ -284,13 +287,18 @@ export default {
       let amount = this.userZakat;
       this.setZakat(amount);
       let query = queryString.parse(location.search);
+      const paymentType = this.getSingleDonationsCheck();
       if (
         typeof query.redirect_status !== "undefined" &&
         query.redirect_status == "succeeded"
       ) {
-        this.$router.push({
-          path: "/bedankt-voor-jouw-betaling" + queryParams,
-        });
+        if (paymentType == 'Zakat') {
+          this.$router.push({ path: "/bedankt-voor-jouw-zakat" + queryParams });
+        }else if(paymentType == 'Sadaqah'){
+          this.$router.push({ path: "/bedankt-voor-jouw-sadaqah" + queryParams });
+        }else{
+          this.$router.push({ path: "/bedankt-voor-jouw-betaling" + queryParams });
+        }
       } else if (
         typeof query.redirect_status !== "undefined" &&
         query.redirect_status == "failed"

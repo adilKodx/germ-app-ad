@@ -1,0 +1,75 @@
+.flash-container {
+  bottom: 5vh;
+  left: 3vw;
+  width: 90vw;
+
+  @include sm {
+    left: 20vw;
+    width: 60vw;
+    bottom: 10vh;
+  }
+}
+
+.display-zakat {
+  .pop-up.-right {
+    margin-top: 20px;
+  }
+}
+
+.pop-up {
+  position: absolute;
+  z-index: 100;
+  margin-top: 55px;
+  width: 65vw;
+  right: -105px;
+
+  @include sm {
+    width: 79vw;
+    left: -3px;
+    width: 350px;
+    margin-top: 40px;
+  }
+
+  @include md {
+    margin-top: 20px;
+  }
+
+  @include md {
+    width: 450px;
+  }
+
+  @include lg {
+    width: 520px;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 0 15px 15px;
+    border-color: #E5F0F9 transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    top: -15px;
+    right: 96px;
+
+    @include sm {
+      left: 13px;
+      right: auto;
+    }
+  }
+
+  &.-right {
+    left: auto;
+    right: -15px;
+    margin-top: 5px;
+
+    &:after {
+      z-index: 1;
+      top: -15px;
+      right: 8px;
+      left: auto;
+    }
+  }
+}

@@ -77,8 +77,8 @@
               {{ index + 1 == 1 ? index + 1 + " stuk" : index + 1 + " stuks" }}
             </div>
             <div
-              class="-mb-1"
-              :class="{ 'bold-dark': selectedSingle == amount }"
+              class="-mb-1 "
+              :class="{ 'text-red-300 bold-dark': selectedSingle == amount }"
               v-else
             >
               €{{ amount }}
@@ -200,9 +200,24 @@ export default {
     left: 11px;
   }
 }
+@media (max-width: 450px) {
+  .preset-btn-container .preset-btn {
+    padding-left: 10px;
+  }
+}
 @media (max-width: 400px) {
   .preset-btn-container .preset-btn {
-    padding-left: 0px;
+    padding-left: 15px;
+  }
+}
+@media (max-width: 375px) {
+  .preset-btn-container .preset-btn {
+    padding-left: 10px;
+  }
+}
+@media (max-width: 370px) {
+  .preset-btn-container .preset-btn {
+    padding-left: 5px;
   }
 }
 .setMargin {

@@ -12,7 +12,7 @@
 
                 <div class="sub-text">{{getLabel('Your zakatable assets')}}</div>
 
-                <div class="text-1-5xl sm:text-2-5xl text-black font-semibold truncate font-heading-2">{{zakatableAssets()}}</div>
+                <div class="text-1-5xl sm:text-2-5xl text-black font-semibold truncate header-6">{{zakatableAssets()}}</div>
             </div>
 
             <div class="w-1/2 sm:mx-4 mb-4">
@@ -20,7 +20,7 @@
 
                 <div class="sub-text">{{getLabel('Your liabilities')}}</div>
 
-                <div class="text-1-5xl sm:text-2-5xl text-red-300 font-semibold truncate font-heading-2">{{totalLiabilities()}}</div>
+                <div class="text-1-5xl sm:text-2-5xl font-semibold truncate header-7">{{totalLiabilities()}}</div>
             </div>
         </div>
 
@@ -30,7 +30,7 @@
 
                 <div class="sub-text">{{getLabel('Net assets')}}</div>
 
-                <div class="text-1-5xl sm:text-2-5xl text-red-300  font-semibold truncate font-heading-2">{{netAssets()}}</div>
+                <div class="text-1-5xl sm:text-2-5xl font-semibold truncate header-7">{{netAssets()}}</div>
             </div>
 
             <div class="w-1/2 sm:mx-4 ">
@@ -39,7 +39,7 @@
                 <div class="sub-text">{{getLabel('Nisab Value')}}</div>
 
                 <div class="text-1-5xl sm:text-2-5xl text-black flex items-center">
-                    <div class="font-semibold mr-4 font-heading-2">{{ nisabValue }}</div>
+                    <div class="font-semibold mr-4 header-6">{{ nisabValue }}</div>
 
                     <div>
                         <right-pop-up :offset="16">
@@ -59,8 +59,8 @@
         </div>
 
         <div class="items-center flex flex-col flex-wrap text-2xl p-4 sm:pt-8 sm:pb-5 sm:px-8 rounded border border-red-300 bg-white text-red-300 mb-10 md:-mt-4">
-            <div class="w-full text-sm text-gray text-base font-semibold font-heading-2">{{getLabel('Your Payable Zakat')}}</div>
-            <div class="w-full text-4xl font-heading-2 font-semibold leading-none sm:leading-normal truncate">{{formatZakat()}} </div>
+            <div class="w-full text-gray text-base font-semibold header-6">{{getLabel('Your Payable Zakat')}}</div>
+            <div class="w-full text-4xl header-7 font-semibold leading-none sm:leading-normal truncate">{{formatZakat()}} </div>
         </div>
     </div>
 </template>

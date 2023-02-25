@@ -45,7 +45,7 @@
             <span class="flex w-full md:flex-col relative">
               <div class="bold-dark block flex items-start w-full sm:w-auto">
                 <div class="flex items-start w-full">
-                  <span class="flex-shrink pr-2 w-full font-heading-2">
+                  <span class="flex-shrink pr-2 w-full header-6">
                     {{ item.name }}
                   </span>
 
@@ -71,7 +71,6 @@
                             -blue
                             h-full
                             overflow-hidden
-                            h-full
                           "
                         >
                           <i
@@ -170,7 +169,7 @@
               />
             </div>
 
-            <div class="px-4">
+            <div class="px-4 header-6">
               {{ currencyFormat(item.amount) }}
             </div>
           </div>

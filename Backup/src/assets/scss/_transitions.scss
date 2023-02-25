@@ -1,0 +1,117 @@
+.transition-all {
+  transition: all .5s $transition-bezier;
+
+  &.-delay {
+    transition-delay: .3s;
+  }
+
+  * {
+    transition: all .5s $transition-bezier;
+  }
+}
+
+.transition-border {
+
+  * {
+    transition: border-color .5s $transition-bezier;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+.field-fade-enter-active{
+  transition-duration: 0.3s;
+}
+
+.field-fade-enter-active,
+.field-fade-leave-active {
+
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.field-fade-enter,
+.field-fade-leave-active {
+  opacity: 0;
+}
+
+.loader-fade-enter-active,
+.loader-fade-leave-active {
+  transition-duration: 0.1s;
+  transition-property: opacity;
+}
+
+.loader-fade-enter,
+.loader-fade-leave-active {
+  opacity: 0;
+}
+
+.sticky-fade-enter-active,
+.sticky-fade-leave-active {
+  transition-duration: 0.8s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.sticky-fade-enter,
+.sticky-fade-leave-active {
+  opacity: 0;
+}
+
+.open-enter-active {
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
+  transition-property: all;
+}
+
+.open-leave-active {
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  transition-property: all;
+}
+
+.open-enter-to, .open-leave {
+  max-height: 1000px;
+}
+
+.open-enter, .open-leave-to {
+  max-height: 0;
+}
+
+
+.slide-enter-active {
+  transition: all .5s ease;
+}
+.slide-leave-active {
+  transition: all .5s ease;
+}
+.slide-enter, .slide-leave-to{
+  transform: translateX(100%);
+}
+
+.fadeHeight-enter-active,
+.fadeHeight-leave-active {
+  transition: all 0.3s ease;
+  max-height: 230px;
+}
+.fadeHeight-enter,
+.fadeHeight-leave-to
+{
+  overflow: hidden;
+  opacity: 0;
+  max-height: 0px;
+}
+
+.border-transition {
+  transition: border 0.5 ease;
+}

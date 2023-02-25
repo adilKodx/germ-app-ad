@@ -7,7 +7,7 @@
             </btn>
 
         </div>
-        <div v-else class="back-btn md:bg-white md:rounded-lg md:border border-red-300 cursor-pointer">
+        <div v-else class="back-btn md:bg-white md:rounded-lg md:border border-red-300 text-red-300 cursor-pointer">
             <a class="text-bold md:py-3 block md:text-center text-base leading-none font-semibold"
                @click="goBack">
 

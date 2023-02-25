@@ -12,6 +12,7 @@
           // text: this.getZakat() > 0 ? 'Ga verder' : 'Ga naar Geef Sadaqah',
           path: '/betaling',
           text: this.getZakat() > 0 ? 'Ga verder' : 'Ga verder',
+          active: true
         }"
         :additionalBtn="{
           text: 'Kies hoe de Zakat wordt gebruikt',
@@ -21,6 +22,7 @@
           size: 'large',
           active: false
         }"
+        :isMobile="isMobile"
         @additionalClick="manageZakatVisible = true"
       >
         <donation-list></donation-list>
@@ -141,6 +143,12 @@ export default {
     },
   },
   computed: {
+    isMobile() {
+      if (screen.width <= 720) {
+        return true;
+      }
+      return false;
+    },
     ...mapGetters([
       "getZakatDeliveryCost",
       "getZakat",

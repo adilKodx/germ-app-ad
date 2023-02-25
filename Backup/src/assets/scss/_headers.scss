@@ -1,0 +1,107 @@
+html,
+body {
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.bold-dark,
+.header,
+.font-heading-2 {
+  font-family: $font-headers;
+
+  
+}
+// .bold-dark {
+//   font-family: $font-headers,Helvetica,Arial,Lucida,sans-serif;
+//   // font-weight: 500;
+// }
+
+// .header {
+//   font-family: $font-headers,Helvetica,Arial,Lucida,sans-serif;
+// }
+
+// .font-heading-2 {
+//   font-family: $font-headers,Helvetica,Arial,Lucida,sans-serif;
+//   font-weight: 200;
+// }
+
+.header-1 {
+  @apply text-5xl;
+  font-weight: font-weight("book");
+  @apply text-black;
+  line-height: 1.4em;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+
+  @include sm {
+    @apply text-4xl;
+  }
+  &.-red {
+    @apply text-red-200;
+  }
+}
+
+.header-2 {
+  @apply text-2-5xl;
+  @apply text-black;
+  font-weight: font-weight("book");
+  font-weight: 700;
+  
+  letter-spacing: -0.5px;
+
+  &.-red {
+    @apply text-red-200;
+  }
+
+  @include sm {
+    @apply text-3-5xl;
+  }
+}
+.header-2-small {
+  @apply text-xl;
+  @apply text-black;
+  font-weight: font-weight("book");
+  
+  &.-red {
+    @apply text-red-200;
+  }
+
+  @include sm {
+    @apply text-3-5xl;
+  }
+}
+
+.header-3 {
+  @apply text-2xl;
+  letter-spacing: 0.04em;
+  @apply text-black;
+}
+
+.header-4 {
+  @apply text-black;
+  @apply text-xl;
+  font-weight: font-weight("normal");
+}
+
+.header-5 {
+  @apply text-lg;
+}
+.header-6 {
+  @apply text-black;
+  font-weight: 600;
+}
+
+.sub-text {
+  @apply text-gray-400;
+
+  &.-uppercase {
+    @apply font-bold;
+    @apply uppercase;
+    @apply text-sm;
+  }
+}

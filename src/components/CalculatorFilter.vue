@@ -4,10 +4,10 @@
       <!-- Add sm:text-lg -->
       <p class="mb-4">{{ getLabel("Filter Sub Text") }}</p>
 
-      <div class="header-2 header mb-4 md:mb-12">Mijn bezittingen</div>
+      <div class="header-2 header mb-4">Mijn bezittingen</div>
 
       <checkbox
-        class="mb-8 header"
+        class="mb-8 header-6"
         @update="selectSectionOwned"
         :checkboxes="sectionsAssets"
         :cols="2"
@@ -16,10 +16,10 @@
     </div>
 
     <div>
-      <div class="header-2 header mb-4 md:mb-12">Mijn schulden</div>
+      <div class="header-2 header mb-4">Mijn schulden</div>
 
       <checkbox
-        class="mb-8 header"
+        class="mb-8 header-6"
         @update="selectSectionOwed"
         :checkboxes="sectionsOwed"
         :fullWidth="true"

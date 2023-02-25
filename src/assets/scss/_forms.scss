@@ -89,7 +89,7 @@ label,
 
   .radio-btn-text {
     //margin-top:-2px;
-
+    
     @include sm {
       margin-top: 1px;
     }
@@ -141,7 +141,7 @@ label,
       }
 
       &.selected {
-        @apply bg-green;
+        @apply bg-red-300;
 
         .radio-text {
           @apply text-white;
@@ -275,10 +275,7 @@ input {
 
 .input-container {
   //@apply p-4;
-  @apply border;
-  @apply rounded;
-  @apply border-gray-200;
-  @apply relative;
+  @apply border rounded relative border-gray-200;
 
   &.selected {
     @apply border-red-300;

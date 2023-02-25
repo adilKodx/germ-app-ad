@@ -5,14 +5,14 @@
   
    <label
       v-if="name && !tooltip"
-      class="mb-1 text-gray font-semibold sm:text-lg font-heading-2"
+      class="mb-1 text-gray font-semibold sm:text-lg header-6"
       :for="identity"
       v-text="label ? label : name"
     ></label>
     <div class="w-full flex justify-start" v-if="tooltip">
       <label
         v-if="name"
-        class="mb-1 text-gray font-semibold sm:text-lg font-heading-2"
+        class="mb-1 text-gray font-semibold sm:text-lg header-6"
         :for="identity"
         v-text="label ? label : name"
       ></label>

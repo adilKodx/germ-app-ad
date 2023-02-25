@@ -360,7 +360,6 @@ export let submitDonationToStripePIApi = (payload) => {
       });
   });
 };
-
 // test route to load payment intent
 export let loadPaymentIntent = (payload) => {
   return new Promise((resolve, reject) => {
@@ -374,7 +373,6 @@ export let loadPaymentIntent = (payload) => {
       });
   });
 };
-
 export let submitDonationToCMS = (payload) => {
   return new Promise((resolve, reject) => {
     axios

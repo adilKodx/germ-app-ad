@@ -11,6 +11,7 @@
                           :path="nextBtn.path"
                           :activebutton="nextBtn.active"
                           :id="id"
+                          :isMobile="isMobile"
                           :align="nextBtn.align"
                           :step="nextBtn.nextStep"
                           :prevStep="nextBtn.prevStep"
@@ -90,6 +91,10 @@
             },
             sectionId: {
                 type: String
+            },
+            isMobile: {
+                type: Boolean,
+                default: false
             }
         },
         computed: {

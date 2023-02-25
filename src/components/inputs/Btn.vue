@@ -9,7 +9,7 @@
       'change-max-width': size == 'large',
     }"
   >
-    <span class="inner-btn-text font-heading-2">
+    <span class="inner-btn-text header-5">
       <slot></slot>
     </span>
   </div>

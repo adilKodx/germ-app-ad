@@ -1,7 +1,7 @@
 <template>
   <scroll-container id="top">
     <div class="pt-32 px-4" style="z-index: 30">
-      <h1 class="header-2 header mb-3">{{ getLabel("Your details") }}</h1>
+      <h1 class="header-2 header ">{{ getLabel("Your details") }}</h1>
 
       <p class="mb-6">
         {{
@@ -15,7 +15,7 @@
           v-if="getSingleDonationsTotal() > 0"
         >
           <span class="text-lg" v-if="getSingleDonationsTotal() > 0">
-            <span class="bold-dark">Totaal:</span>
+            <span class="header-6">Totaal:</span>
             {{ formatCommas(parseFloat(getSingleDonationsTotal()).toFixed(2)) }}
           </span>
           <span class="details-btn mt-4">
@@ -27,7 +27,7 @@
       </p>
 
       <div class="w-full sm:w-1/2 sm:pr-4">
-        <div class="mb-1 text-gray font-semibold sm:text-lg font-heading-2">
+        <div class="mb-1 text-gray font-semibold sm:text-lg header-6">
           {{ getLabel("Titel") }}
         </div>
         <radio
@@ -49,7 +49,7 @@
         <div class="w-full sm:w-1/2 sm:mr-4">
           <text-input
             name="Voornaam"
-            placeholder="Gib deinen Namen ein"
+            placeholder="Vul jouw naam in"
             :currency="false"
             v-model="paymentDetails.firstName"
             :small="true"
@@ -59,8 +59,8 @@
 
         <div class="w-full sm:w-1/2 sm:ml-4">
           <text-input
-            name="Nachname"
-            placeholder="Gib bitte Deinen Nachnamen ein"
+            name="Achternaam"
+            placeholder="Vul jouw achternaam in"
             :currency="false"
             v-model="paymentDetails.lastName"
             :small="true"
@@ -72,11 +72,11 @@
         <div class="w-full sm:w-1/2 sm:mr-4">
           <text-input
             name="E-mailadres*"
-            placeholder="Gib bitte deine E-Mailadresse ein"
+            placeholder="Vul jouw e-mailadres in"
             :currency="false"
             v-model="paymentDetails.address.emailAddress"
             :validators="{ required: v.required, email: v.email }"
-            errormessage="Bitte gib uns eine gültige E-Mailadresse an"
+            errormessage="Geef een geldig e-mailadres op"
             @errors="setValidate"
             :tooltip="true"
             :small="true"
@@ -178,7 +178,8 @@
     </div>
     <div
       class="pb-6 px-4"
-      v-if="this.getSingleDonationsTotal() > 0"
+      
+      v-if="this.getSingleDonationsTotal() > 0.50"
       style="z-index: 20"
       id="card-details"
     >
@@ -211,13 +212,7 @@
           <img
             src="/static/img/icons8-maestro.svg"
             alt=""
-            style="padding-left: 7px; float: left"
-          />
-          <img
-            src="/static/img/ideal-logo.svg"
-            alt=""
             style="padding-left: 7px"
-            class="idealImage"
           />
         </div>
       </div>
@@ -225,10 +220,12 @@
       <h2 class="header header-3 font-style-2 font-semibold mb-4">
         {{ getLabel("Single donation payment details") }}
       </h2>
-      <div v-if="CheckValidationExist">
-      <stripe-checkout ref="stripe"></stripe-checkout>
+      <!-- <div v-if="PaymentMethod == 'Stripe'"> -->
+      <div   class="stripe-root">
+        <stripe-checkout ref="stripe"></stripe-checkout>
       </div>
-    </div>
+      <!-- </div> -->
+    
 
     <div class="pb-12 px-4">
       <div
@@ -237,18 +234,6 @@
         v-html="ContactText"
       ></div>
     </div>
-
-    <!-- <div class="w-full sm:w-1/2 mb-40 px-4">
-      <btn
-        id="complete-payment"
-        :class="{ '-active': validates }"
-       
-        @click="handleClick"
-      >
-        <span >check stripe</span>
-       
-      </btn>
-    </div> -->
 
     <div class="w-full sm:w-1/2 mb-40 px-4">
       <btn
@@ -262,6 +247,7 @@
         <span v-else><spinner></spinner></span>
       </btn>
     </div>
+  </div>
 
     <flash-container>
       <transition name="fade">
@@ -269,7 +255,7 @@
           <span v-if="msg.length > 0">
             {{ msg }}
           </span>
-          <span v-else> Überprüfe deine Zahlungsdetails </span>
+          <span v-else> Controleer jouw betaalgegevens </span>
         </error-message>
       </transition>
     </flash-container>
@@ -314,25 +300,18 @@ export default {
       titles: ["Mr.", "Mw."],
       paymentTypes: ["Direct Debit", "Card"],
       address: false,
-      CheckValidationExist:true,
       validates: false,
       checkPaymentType : "Zakat",
+      // fieldsShow: false,
+
+      redirectPage:"",
       stripelements:"",
       emitClientSecret:"",
-      payment: 'stripe',
-      // fieldsShow: false,
+
       errorsArr: [],
     };
   },
   methods: {
-
-    handleClick() {
-      
-      this.CheckValidationExist = !this.CheckValidationExist;
-      console.log('handleClick')
-      console.log(this.CheckValidationExist)
-    },
-
     // handleFields () {
     //   this.fieldsShow = !this.fieldsShow
     // },
@@ -354,124 +333,126 @@ export default {
     storePaymentDetailsStripeRouting() {
       localStorage.setItem("journyData", JSON.stringify(this.journyData));
     },
-    payWithCard(stripe, clientSecret, card, name) {
-      // Initiate the payment.
-      // If authentication is required, confirmCardPayment will automatically display a modal
-      const email = this.paymentDetails.address.emailAddress;
-      stripe
-        .confirmCardPayment(clientSecret, {
-          payment_method: {
-            card: card,
-            billing_details: {
-              name: name && name !== "" && name !== " " ? name : email,
-            },
-          },
-        })
-        .then((result) => {
-          if (result.error) {
-            // Show error to your customer
-            this.showError(result.error.message);
-            this.errorMsg(result.error);
-          } else {
-            this.loading = false;
-            this.msg = "";
-            this.checkPaymentType = this.checkPayment();
-            // console.log(this.checkPaymentType);
-            // return false;
-              if (this.checkPaymentType == 'Zakat') {
-                this.$router.push({ path: "/bedankt-voor-jouw-zakat" });
-              }else if(this.checkPaymentType == 'Sadaqah'){
-                this.$router.push({ path: "/bedankt-voor-jouw-sadaqah" });
-              }else{
-                this.$router.push({ path: "/bedankt-voor-jouw-betaling" });
-              }
-            // The payment has been processed!
-            // this.orderComplete(clientSecret);
-          }
-        });
-    },
 
-    payWithiDEAL(stripe, clientSecret, ideal, name) {
-      this.storePaymentDetailsStripeRouting();
-      const email = this.paymentDetails.address.emailAddress;
-      stripe
-        .confirmIdealPayment(clientSecret, {
-          payment_method: {
-            ideal: ideal,
-            billing_details: {
-              name: name && name !== "" && name !== " " ? name : email,
-            },
-          },
-          return_url: `${window.location.origin}/bereken/`,
-        })
-        .then((result) => {
-          // console.log('result', result);
-          if (result.error) {
-            // Show error to your customer
-            this.showError(result.error.message);
-            this.errorMsg(result.error);
-          } else {
-            // this.orderComplete(clientSecret);
-          }
-        });
-    },
+    // ideal card payment code
+    // payWithCard(stripe, clientSecret, card, name) {
+    //   // Initiate the payment.
+    //   // If authentication is required, confirmCardPayment will automatically display a modal
+    //   const email = this.paymentDetails.address.emailAddress;
+    //   stripe
+    //     .confirmCardPayment(clientSecret, {
+    //       payment_method: {
+    //         card: card,
+    //         billing_details: {
+    //           name: name && name !== "" && name !== " " ? name : email,
+    //         },
+    //       },
+    //     })
+    //     .then((result) => {
+    //       if (result.error) {
+    //         // Show error to your customer
+    //         this.showError(result.error.message);
+    //         this.errorMsg(result.error);
+    //       } else {
+    //         this.loading = false;
+    //         this.msg = "";
+    //         this.checkPaymentType = this.checkPayment();
+    //         // return false;
+    //           if (this.checkPaymentType == 'Zakat') {
+    //             this.$router.push({ path: "/bedankt-voor-jouw-zakat" });
+    //           }else if(this.checkPaymentType == 'Sadaqah'){
+    //             this.$router.push({ path: "/bedankt-voor-jouw-sadaqah" });
+    //           }else{
+    //             this.$router.push({ path: "/bedankt-voor-jouw-betaling" });
+    //           }
+    //         // The payment has been processed!
+    //         // this.orderComplete(clientSecret);
+    //       }
+    //     });
+    // },
+      // ideal card payment code
+    // payWithiDEAL(stripe, clientSecret, ideal, name) {
+    //   this.storePaymentDetailsStripeRouting();
+    //   const email = this.paymentDetails.address.emailAddress;
+    //   stripe
+    //     .confirmIdealPayment(clientSecret, {
+    //       payment_method: {
+    //         ideal: ideal,
+    //         billing_details: {
+    //           name: name && name !== "" && name !== " " ? name : email,
+    //         },
+    //       },
+    //       return_url: `${window.location.origin}/bereken/`,
+    //     })
+    //     .then((result) => {
+    //       // console.log('result', result);
+    //       if (result.error) {
+    //         // Show error to your customer
+    //         this.showError(result.error.message);
+    //         this.errorMsg(result.error);
+    //       } else {
 
-    orderComplete(secret) {
-      this.$refs.stripe.stripe.retrievePaymentIntent(secret).then((result) => {
-        let payload = {
-          card: "",
-          brand: "",
-          PI: result.paymentIntent.id,
-        };
-        document.querySelector(".sr-payment-form").classList.add("hidden");
-        if (result.paymentIntent.status === "succeeded") {
-          payload.secret = secret;
-          // this.loading = false;
-          // this.msg = "";
-          // this.$router.push({ path: "/bedankt-voor-jouw-betaling" });
+    //         // this.orderComplete(clientSecret);
+    //       }
+    //     });
+    // },
+      // ideal card payment code
+    // orderComplete(secret) {
+    //   this.$refs.stripe.stripe.retrievePaymentIntent(secret).then((result) => {
+    //     let payload = {
+    //       card: "",
+    //       brand: "",
+    //       PI: result.paymentIntent.id,
+    //     };
+    //     document.querySelector(".sr-payment-form").classList.add("hidden");
+    //     if (result.paymentIntent.status === "succeeded") {
+    //       payload.secret = secret;
+    //       // this.loading = false;
+    //       // this.msg = "";
+    //       // this.$router.push({ path: "/bedankt-voor-jouw-betaling" });
 
-          this.$store.dispatch("MarkPaymentInCMS", payload).then((res) => {
-            let payload = {
-              _ip: this._ip,
-              _uetsid: localStorage.getItem("_uetsid"),
-              _uetsid_exp: localStorage.getItem("_uetsid_exp"),
-              _uetvid: localStorage.getItem("_uetvid"),
-              _uetvid_exp: localStorage.getItem("_uetvid_exp"),
-              firstname: this.paymentDetails.firstName,
-              lastname: this.paymentDetails.lastName,
-              email: this.paymentDetails.address.emailAddress,
-              URLString: location.search,
-              dataObject: JSON.stringify(queryString.parse(location.search)),
-              customerRef:
-                typeof this.customerRef.data.customer !== "undefined"
-                  ? this.customerRef.data.customer.ref
-                  : null,
-              journyStatus: "Completed",
-            };
-            this.$store.dispatch("submitSessionData", payload);
-            if (res.status == 200) {
-              console.log(this)
-              this.loading = false;
-              this.msg = "";
-              this.checkPaymentType = this.checkPayment();
-            // console.log(this.checkPaymentType);
-            // return false;
-              if (this.checkPaymentType == 'Zakat') {
-                this.$router.push({ path: "/bedankt-voor-jouw-zakat" });
-              }else if(this.checkPaymentType == 'Sadaqah'){
-                this.$router.push({ path: "/bedankt-voor-jouw-sadaqah" });
-              }else{
-                this.$router.push({ path: "/bedankt-voor-jouw-betaling" });
-              }
+    //       this.$store.dispatch("MarkPaymentInCMS", payload).then((res) => {
+    //         let payload = {
+    //           _ip: this._ip,
+    //           _uetsid: localStorage.getItem("_uetsid"),
+    //           _uetsid_exp: localStorage.getItem("_uetsid_exp"),
+    //           _uetvid: localStorage.getItem("_uetvid"),
+    //           _uetvid_exp: localStorage.getItem("_uetvid_exp"),
+    //           firstname: this.paymentDetails.firstName,
+    //           lastname: this.paymentDetails.lastName,
+    //           email: this.paymentDetails.address.emailAddress,
+    //           URLString: location.search,
+    //           dataObject: JSON.stringify(queryString.parse(location.search)),
+    //           customerRef:
+    //             typeof this.customerRef.data.customer !== "undefined"
+    //               ? this.customerRef.data.customer.ref
+    //               : null,
+    //           journyStatus: "Completed",
+    //         };
+    //         this.$store.dispatch("submitSessionData", payload);
+    //         if (res.status == 200) {
+    //           console.log(this)
+    //           this.loading = false;
+    //           this.msg = "";
+    //           this.checkPaymentType = this.checkPayment();
+    //         // console.log(this.checkPaymentType);
+    //         // return false;
+    //           if (this.checkPaymentType == 'Zakat') {
+    //             this.$router.push({ path: "/bedankt-voor-jouw-zakat" });
+    //           }else if(this.checkPaymentType == 'Sadaqah'){
+    //             this.$router.push({ path: "/bedankt-voor-jouw-sadaqah" });
+    //           }else{
+    //             this.$router.push({ path: "/bedankt-voor-jouw-betaling" });
+    //           }
 
-            } else {
-              this.loading = false;
-              // this.$router.push({ path: '/bedankt-voor-jouw-betaling' });
-            }
-          });
-        }
-      });
-    },
+    //         } else {
+    //           this.loading = false;
+    //           // this.$router.push({ path: '/bedankt-voor-jouw-betaling' });
+    //         }
+    //       });
+    //     }
+    //   });
+    // },
 
     showError(errorMsgText) {
       this.loading = false;
@@ -481,17 +462,20 @@ export default {
         errorMsg.textContent = "";
       }, 4000);
     },
+    async submitPayment() {
+      if (this.loading) {
+        return true;
+      }
 
-    async  submitPayment(e) {
-    //async  handleSubmit(e) {
+      console.log('show donation')
+      console.log(this.getSingleDonationsTotal())
 
-      // handling validation
-      console.log('clicked submit payment')
-      //console.log(this.paymentDetails)
+      // const selectedPaymentMethod = document.querySelector(
+      //   ".sr-pm-button.selected"
+      // );
+
       const regex = /[‘´ʼʹ’]/gi;
 
-      this.paymentDetails.accountHolderName =
-        this.paymentDetails.accountHolderName.replace(regex, "'");
       this.paymentDetails.firstName = this.paymentDetails.firstName.replace(
         regex,
         "'"
@@ -500,28 +484,13 @@ export default {
         regex,
         "'"
       );
-      this.paymentDetails.companyName = this.paymentDetails.companyName.replace(
-        regex,
-        "'"
-      );      
 
       this.setLocalStorage();
 
-      if (
-        this.getSingleDonationsTotal() == 0 &&
-        this.getRegularDonationsTotal() == 0
-      ) {
-        this.errorMsg("Basket is empty");
-        this.$scrollTo("#regular-payment", 500, { offset: -175 });
-        return;
-      } else if (this.regularZakat + this.regularNoZakat > 800) {
-        this.errorMsg("Regular payments must be below £800");
-        return;
-      } else if (
-        this.regularNoZakat + this.regularZakat > 0 &&
-        this.regularNoZakat + this.regularZakat < 1
-      ) {
-        this.errorMsg("Regular payments must be at least £1.");
+      if (this.getSingleDonationsTotal() == 0) {
+        this.errorMsg(
+          "Je hebt geen betaling in jouw overzicht. Ga terug naar de andere sectie en vul daar een bedrag in dat je wil afdragen."
+        );
         return;
       }
 
@@ -536,197 +505,128 @@ export default {
             : "top";
 
         if (this.validates) {
-          console.log('consoling validation true')
-
-          if(this.payment ){  
-          var elements =this.stripelements
-          console.log('loading payment element')
-          console.log(elements)
-          var stripe = this.$refs.stripe;
-          // console.log('loading refs')
-          // console.log(stripe)
-          //if (!this.getGateway("paypal")) {
-            //stripe = this.$refs.stripe;
-          // } else {
-          //   stripe = this.$refs.radioStripe.$refs.stripe[0];
-          // }
-
-          let name = this.paymentDetails.firstName +
-                    "/" +
-                    this.paymentDetails.lastName+
-                    "/" +
-                    this.paymentDetails.companyName;
-            
-            this.loading = true;
-            let that = this;
-            this.msg = "";
-            await stripe.stripe.confirmPayment({
-                elements,
-                confirmParams: {
-                  return_url: this.redirectPage,
-                  payment_method_data: {
-                    billing_details: {
-                      
-                      address: {
-                            city: that.paymentDetails.address.townCity,
-                            // country: "PK",
-                            line1: that.paymentDetails.address.lineOne,
-                            line2: that.paymentDetails.address.lineTwo,
-                            postal_code: that.paymentDetails.address.postCode,
-                            state: null
-                          },
-                          email: that.paymentDetails.address.emailAddress,
-                          name: name ,
+          if (this.getSingleDonationsTotal() > 0) {
+            var elements =this.stripelements
+            console.log(elements)
+            var stripe;
+            // if (!this.f("paypal")) {
+              stripe = this.$refs.stripe;
+            // } else {
+            //   stripe = this.$refs.radioStripe.$refs.stripe[0];
+            // }
+  
+            let name = this.paymentDetails.firstName +
+                      "/" +
+                      this.paymentDetails.lastName+
+                      "/" +
+                      this.paymentDetails.companyName;
+              
+              this.loading = true;
+              let that = this;
+              this.msg = "";
+              await stripe.stripe.confirmPayment({
+                  elements,
+                  confirmParams: {
+                    return_url: this.redirectPage,
+                    payment_method_data: {
+                      billing_details: {
+                        
+                         address: {
+                               city: 'germany',//that.paymentDetails.address.townCity,
+                               country: "DE",
+                               line1: 'test address 1',//that.paymentDetails.address.lineOne,
+                               line2: 'test address 1',//that.paymentDetails.address.lineTwo,
+                               postal_code: 14199 ,//that.paymentDetails.address.postCode,
+                               state: 'Berlin'
+                            },
+                            email: that.paymentDetails.address.emailAddress,
+                            name: name ,
                           phone: that.paymentDetails.address.contactNumber,
+                      },
                     },
                   },
-                },
-              })
-              .then(async  function (result) {                
-                  if (result.error) {
-                    that.loading = false;
-                    console.log(result.error)
-                    
-                    that.errorMsg(result.error.message);
-                    
-                    console.log("foundasas error")
-                    // Inform the customer that there was an error.
-                  }else{
-                    that.loading = false;
-                    console.log("success")
+                })
+                .then(async  function (result) {                
+                    if (result.error) {
+                      that.loading = false;
+                      console.log(result.error)
+                      that.errorMsg(result.error.message);
+                      console.log("foundasas error")
+                      // Inform the customer that there was an error.
+                    }else{
+                      that.loading = false;
+                      console.log("success")
 
-                  }
-                });//  ********END**********
-            }else{
-            console.log('payment methord')
-            this.errorMsg("Please Select Payment Method");
+                    }
+              });//  ********END**********
+
+            // // ideal card payment code
+            // if (this.PaymentMethod == "Stripe") {
+            //   var stripe = this.$refs.stripe;
+            //   let payload = {
+            //     card: stripe.card,
+            //     brand: stripe.cardBrand,
+            //     method:
+            //       selectedPaymentMethod.id == "card-button" ? "Card" : "iDEAL",
+            //   };
+            //   this.$store
+            //     .dispatch("stripePIDonation", payload)
+            //     .then((res) => {
+            //       if (res.status == 200) {
+            //         if (typeof res.data.message !== "undefined") {
+            //           this.errorMsg(res.data.message);
+            //         } else {
+            //           // Make stripe payment with Payment Intent ID
+            //           let secret = res.data.client_secret;
+            //           let name =
+            //             this.paymentDetails.firstName +
+            //             " " +
+            //             this.paymentDetails.lastName;
+            //           this.$store.dispatch("SaveLocalStateData");
+            //           switch (selectedPaymentMethod.id) {
+            //             case "card-button":
+            //               this.payWithCard(
+            //                 stripe.stripe,
+            //                 secret,
+            //                 stripe.card,
+            //                 name
+            //               );
+            //               return;
+            //             case "ideal-button":
+            //               this.payWithiDEAL(
+            //                 stripe.stripe,
+            //                 secret,
+            //                 stripe.ideal,
+            //                 name
+            //               );
+            //               return;
+            //             default:
+            //               console.log("Error: no payment method selected");
+            //           }
+            //         }
+            //       } else {
+            //         console.error("Stripe API call failed");
+            //       }
+            //     })
+
+            //     .catch((e) => {
+            //       if (typeof e.message !== "undefined") {
+            //         this.errorMsg(e.message);
+            //       } else {
+            //         this.errorMsg(
+            //           "Er ging iets mis met de betaling. Probeer het opnieuw of neem contact met ons op."
+            //         );
+            //       }
+            //     });
+            // } // ideal card payment code
           }
-        }else{
-          this.loading = false;
-          console.log('validation failed')
-          this.errorMsg("Please check required fields");
-          
-          
+        } else {
+
+          this.errorMsg("Controleer de verplichte velden");
           this.$scrollTo("#" + scrollId, 500, { offset: -175 });
         }
-      // end handling validation  
-
-      }, 5);// set tieout end
+      });
     },
-
-    // async submitPayment() {
-    //   if (this.loading) {
-    //     return true;
-    //   }
-    //   var elements =this.stripelements;
-    //   console.log('submit payment stripe');
-    //   console.log(elements);
-
-    //   const selectedPaymentMethod = document.querySelector(
-    //     ".sr-pm-button.selected"
-    //   );
-
-    //   const regex = /[‘´ʼʹ’]/gi;
-
-    //   this.paymentDetails.firstName = this.paymentDetails.firstName.replace(
-    //     regex,
-    //     "'"
-    //   );
-    //   this.paymentDetails.lastName = this.paymentDetails.lastName.replace(
-    //     regex,
-    //     "'"
-    //   );
-
-    //   this.setLocalStorage();
-
-    //   if (this.getSingleDonationsTotal() == 0) {
-    //     this.errorMsg(
-    //       "Je hebt geen betaling in jouw overzicht. Ga terug naar de andere sectie en vul daar een bedrag in dat je wil afdragen."
-    //     );
-    //     return;
-    //   }
-
-    //   this.emitCheckValidation();
-
-    //   this.loading = true;
-
-    //   setTimeout(async () => {
-    //     let scrollId =
-    //       this.errorsArr.filter((el) => el.error).length > 0
-    //         ? this.errorsArr.filter((el) => el.error)[0].id
-    //         : "top";
-
-    //     if (this.validates) {
-    //       if (this.getSingleDonationsTotal() > 0) {
-    //         if (this.PaymentMethod == "Stripe") {
-    //           var stripe = this.$refs.stripe;
-    //           let payload = {
-    //             card: stripe.card,
-    //             brand: stripe.cardBrand,
-    //             method:
-    //               selectedPaymentMethod.id == "card-button" ? "Card" : "iDEAL",
-    //           };
-    //           this.$store
-    //             .dispatch("stripePIDonation", payload)
-    //             .then((res) => {
-    //               if (res.status == 200) {
-    //                 if (typeof res.data.message !== "undefined") {
-    //                   this.errorMsg(res.data.message);
-    //                 } else {
-    //                   // Make stripe payment with Payment Intent ID
-    //                   let secret = res.data.client_secret;
-    //                   let name =
-    //                     this.paymentDetails.firstName +
-    //                     " " +
-    //                     this.paymentDetails.lastName;
-    //                   this.$store.dispatch("SaveLocalStateData");
-    //                   switch (selectedPaymentMethod.id) {
-    //                     case "card-button":
-    //                       this.payWithCard(
-    //                         stripe.stripe,
-    //                         secret,
-    //                         stripe.card,
-    //                         name
-    //                       );
-    //                       return;
-    //                     case "ideal-button":
-    //                       this.payWithiDEAL(
-    //                         stripe.stripe,
-    //                         secret,
-    //                         stripe.ideal,
-    //                         name
-    //                       );
-    //                       return;
-    //                     default:
-    //                       console.log("Error: no payment method selected");
-    //                   }
-    //                 }
-    //               } else {
-    //                 console.error("Stripe API call failed");
-    //               }
-    //             })
-
-    //             .catch((e) => {
-    //               if (typeof e.message !== "undefined") {
-    //                 this.errorMsg(e.message);
-    //               } else {
-    //                 this.errorMsg(
-    //                   "Er ging iets mis met de betaling. Probeer het opnieuw of neem contact met ons op."
-    //                 );
-    //               }
-    //             });
-    //         }
-    //       }
-    //     } else {
-    //       console.log("all validation failed");
-
-    //       this.errorMsg("Controleer de verplichte velden");
-    //       this.$scrollTo("#" + scrollId, 500, { offset: -175 });
-    //     }
-    //   });
-    // },
-
-    
     errorMsg(msg) {
       this.loading = false;
       this.errors = true;
@@ -873,6 +773,11 @@ export default {
     },
   },
   mounted() {
+    if (this.$route.hash) {
+      this.$scrollTo(this.$route.hash, 1, { offset: -200 });
+    } else {
+      window.scrollTo(0, 0);
+    }
 
     let finalurl = window.location.origin 
     this.redirectPage = finalurl;
@@ -886,14 +791,7 @@ export default {
        this.emitClientSecret =event; 
    
     });
-    console.log('check load validation');
-    console.log(this.validates);
-    
-    if (this.$route.hash) {
-      this.$scrollTo(this.$route.hash, 1, { offset: -200 });
-    } else {
-      window.scrollTo(0, 0);
-    }
+
     let query = queryString.parse(location.search);
     if (typeof query.redirect_status == "undefined") {
       if (query.redirect_status == "failed") {
@@ -914,36 +812,7 @@ export default {
 };
 </script>
 <style scoped>
-@media only screen and (max-width: 540px) {
-  .idealImage {
-    width: 13% !important;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .idealImage {
-    width: 12% !important;
-  }
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  .idealImage {
-    width: 8% !important;
-  }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-  .idealImage {
-    width: 8% !important;
-  }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  .idealImage {
-    width: 10% !important;
-  }
+.stripe-root {
+  @apply border border-red-300 p-4;
 }
 </style>

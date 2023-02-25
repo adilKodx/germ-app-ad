@@ -1,0 +1,51 @@
+$transition-duration: .8s;
+$transition-bezier: cubic-bezier(.48, 0, .12, 1);
+
+$nav-height: 138px;
+
+$font-weights: (
+  'extralight': 200,
+  'light': 300,
+  'standard': 400,
+  'normal': 400,
+  'medium': 500,
+  'book': 600,
+  'bold': 700
+);
+
+$colours: (
+  'black': #312525,
+  'white': #fff,
+  'grey': (
+    'lighter': #E5E5E5,
+    'light': #B1B1B1,
+    '200': #B3B3B3,
+    'light1': #848486,
+    'light2': #727272,
+    'base': #666666,
+    'dark':#222222
+  ),
+  'green': #1d9868
+);
+
+$breakpoints: (
+  'xxs': 400px,
+  'xs': 749px,
+  'sm': 750px,
+  'md': 992px,
+  'lg': 1200px,
+  'xlg': 1640px
+);
+
+$nav-heights: (
+  'xs': 65px,
+  'sm': 80px,
+  'md': 85px,
+  'lg': 85px,
+  'xlg': 130px
+);
+
+$font-body: 'Inter,Helvetica,Arial,Lucida,sans-serif';
+// $font-headers: 'Pines';
+// $font-headers: 'Gilroy-extrabold';
+$font-headers: 'Lora,Georgia,Times New Roman,serif';

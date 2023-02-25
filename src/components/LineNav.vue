@@ -87,7 +87,7 @@
               pt-3
               absolute
               text-black
-              header
+              header-6
               text-sm
               font-semibold
               capitalize
@@ -151,29 +151,7 @@ export default {
       // return !this.historyCheck(path);
       return false;
     },
-    // progress() {
-    //   if (this.calculatorProgress == 0) return "w-0";
-    //   else if (this.calculatorProgress == 1) return "w-1/3";
-    //   else if (this.calculatorProgress == 2) return "w-2/3";
-    //   else if (this.calculatorProgress == 3) return "w-full";
-    //   else if (this.activeTab == 3 && this.largestIndex <= 3) return "w-full";
-    //   else if (this.activeTab == -1) return "w-full";
-    //   if (this.activeTab == 0 && this.largestIndex <= 0) {
-    //     return "w-0";
-    //   } else if (this.activeTab == 1 && this.largestIndex <= 1) {
-    //     return "w-1/3";
-    //   } else if (this.activeTab == 2 && this.largestIndex <= 2) {
-    //     return "w-2/3";
-    //   } else if (this.activeTab == 3 && this.largestIndex <= 3) {
-    //     return "w-full";
-    //   } else if (this.activeTab == -1) {
-    //     return "w-full";
-    //   } else {
-    //     return this.lastWidth;
-    //   }
-    // },
     progress() {
-      //console.log(this.calculatorProgress);
       if (this.calculatorProgress == 0) return "w-0";
       else if (this.calculatorProgress == 1) return "w-1/2";
       else if (this.calculatorProgress == 2) return "w-full";
@@ -209,7 +187,6 @@ export default {
       return paths;
     },
     largestIndex() {
-      console.log("ado;" ,this.pastTabs)
       let val = this.pastTabs.length > 0 ? this.pastTabs : [];
       return Math.max(...val);
     },
@@ -263,7 +240,6 @@ export default {
       this.isSadaqah = false;
       this.isZakat = true;
     }
-    //console.log(this.$route)
     this.setTab(this.routes.indexOf(this.$route.path));
 
     let to = this.$route.name;

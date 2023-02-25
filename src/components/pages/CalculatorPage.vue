@@ -138,7 +138,7 @@
           <div class="flex flex-row flex-wrap justify-between w-full mt-6">
             <div class="w-full">
               <text-input
-                placeholder="Menge eingeben"
+                placeholder="Vul bedrag in"
                 :name="getLabel('Cash in hand')"
                 :validators="{ amountCheck: v.amountCheck }"
                 errormessage="Vul een geldige waarde in"
@@ -150,7 +150,7 @@
 
             <div class="w-full">
               <text-input
-                placeholder="Menge eingeben"
+                placeholder="Vul bedrag in"
                 :name="getLabel('Cash in bank accounts')"
                 :validators="{ amountCheck: v.amountCheck }"
                 errormessage="Vul een geldige waarde in"
@@ -258,7 +258,7 @@
           >
             <div class="w-full">
               <text-input
-                placeholder="Menge eingeben"
+                placeholder="Vul bedrag in"
                 :name="getLabel('Loan')"
                 :validators="{ amountCheck: v.amountCheck }"
                 errormessage="Vul een geldige waarde in"
@@ -269,7 +269,7 @@
 
             <div class="w-full">
               <text-input
-                placeholder="Menge eingeben"
+                placeholder="Vul bedrag in"
                 :name="getLabel('Something I have sold')"
                 :validators="{ amountCheck: v.amountCheck }"
                 errormessage="Vul een geldige waarde in"
@@ -464,7 +464,7 @@
           >
             <div class="w-full">
               <text-input
-                placeholder="Menge eingeben"
+                placeholder="Vul bedrag in"
                 :name="getLabel('Shares bought to resell for capital gain')"
                 :validators="{ amountCheck: v.amountCheck }"
                 errormessage="Vul een geldige waarde in"
@@ -476,7 +476,7 @@
 
             <div class="w-full">
               <text-input
-                placeholder="Menge eingeben"
+                placeholder="Vul bedrag in"
                 :name="
                   getLabel(
                     'Shares bought as a long term investment for dividend income'
@@ -610,7 +610,7 @@
           >
             <div class="w-full">
               <text-input
-                placeholder="Menge eingeben"
+                placeholder="Vul bedrag in"
                 amount:name="getLabel('Full amount')"
                 :validators="{ amountCheck: v.amountCheck }"
                 errormessage="Vul een geldige waarde in"
@@ -641,7 +641,7 @@
 
             <div class="w-full sm:w-1/2 sm:ml-2 z-0">
               <text-input
-                placeholder="Menge eingeben"
+                placeholder="Vul bedrag in"
                 :name="getLabel('Full amount')"
                 :validators="{ amountCheck: v.amountCheck }"
                 errormessage="Vul een geldige waarde in"
@@ -737,7 +737,7 @@
           >
             <div class="w-full">
               <text-input
-                placeholder="Menge eingeben"
+                placeholder="Vul bedrag in"
                 :name="getLabel('Stocks & shares ISA/CTF')"
                 :validators="{ amountCheck: v.amountCheck }"
                 errormessage="Vul een geldige waarde in"
@@ -749,7 +749,7 @@
 
             <div class="w-full">
               <text-input
-                placeholder="Menge eingeben"
+                placeholder="Vul bedrag in"
                 :name="getLabel('Cash ISA')"
                 :validators="{ amountCheck: v.amountCheck }"
                 errormessage="Vul een geldige waarde in"
@@ -849,7 +849,7 @@
           >
             <div class="w-full">
               <text-input
-                placeholder="Menge eingeben"
+                placeholder="Vul bedrag in"
                 :name="getLabel('Current cash valuation')"
                 :validators="{ amountCheck: v.amountCheck }"
                 errormessage="Vul een geldige waarde in"
@@ -951,7 +951,7 @@
           >
             <div class="w-full">
               <text-input
-                placeholder="Menge eingeben"
+                placeholder="Vul bedrag in"
                 :name="getLabel('Cash')"
                 :validators="{ amountCheck: v.amountCheck }"
                 errormessage="Vul een geldige waarde in"
@@ -963,7 +963,7 @@
 
             <div class="w-full">
               <text-input
-                placeholder="Menge eingeben"
+                placeholder="Vul bedrag in"
                 :name="getLabel('Receivables')"
                 :validators="{ amountCheck: v.amountCheck }"
                 errormessage="Vul een geldige waarde in"
@@ -975,7 +975,7 @@
 
             <div class="w-full">
               <text-input
-                placeholder="Menge eingeben"
+                placeholder="Vul bedrag in"
                 :name="getLabel('Stock')"
                 :validators="{ amountCheck: v.amountCheck }"
                 errormessage="Vul een geldige waarde in"
@@ -1076,7 +1076,7 @@
             <div class="flex w-full flex-wrap">
               <div class="w-full">
                 <text-input
-                  placeholder="Menge eingeben"
+                  placeholder="Vul bedrag in"
                   :name="getLabel('Mortgage')"
                   :validators="{ amountCheck: v.amountCheck }"
                   errormessage="Vul een geldige waarde in"
@@ -1088,7 +1088,7 @@
 
               <div class="w-full">
                 <text-input
-                  placeholder="Menge eingeben"
+                  placeholder="Vul bedrag in"
                   :name="getLabel('Utility bills')"
                   :validators="{ amountCheck: v.amountCheck }"
                   errormessage="Vul een geldige waarde in"
@@ -1102,7 +1102,7 @@
             <div class="flex w-full flex-wrap sm:flex-no-wrap">
               <div class="w-full">
                 <text-input
-                  placeholder="Menge eingeben"
+                  placeholder="Vul bedrag in"
                   :name="getLabel('Personal loans')"
                   :validators="{ amountCheck: v.amountCheck }"
                   errormessage="Vul een geldige waarde in"

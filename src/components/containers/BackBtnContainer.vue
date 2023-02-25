@@ -1,6 +1,6 @@
 <template>
     <div v-if="!show">
-        <back-btn>zuruck</back-btn>
+        <back-btn>Terug</back-btn>
     </div>
 </template>
 

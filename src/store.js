@@ -455,7 +455,6 @@ const store = new Vuex.Store({
       let checkZakat = false;
       let checkSadaqah = false;
       state.donation.donationTypes.map((el) => {
-        console.log(el)
         if(el.id == 0 && el.amount > 0){
           checkZakat = true;
         }
@@ -1473,12 +1472,10 @@ const store = new Vuex.Store({
           });
       });
     },
-
-    // test route to load payment intent
     loadStripePyamentIntent(context, payload) {
       console.log('loadStripePyamentIntent test')
       // console.log(context)
-      // console.log(payload)
+       console.log(payload)
 
       context.commit("SET_CARD_DETAILS", payload);
       context.commit("SET_RECOMMENDED_ZAKAT");
@@ -1551,7 +1548,8 @@ const store = new Vuex.Store({
       };
 
       // console.log('loadind console data')
-      // console.log(JSON.stringify(singleDonation) )
+       console.log('loading single donation')
+       console.log(JSON.stringify(singleDonation) )
 
       return new Promise((resolve, reject) => {
         loadPaymentIntent(singleDonation)
@@ -1567,7 +1565,6 @@ const store = new Vuex.Store({
           });
       });
     },
-
     stripePIDonation(context, payload) {
       let cardNo = JSON.stringify({ cardNumber: "" });
       localStorage.setItem("cardNumber", cardNo);

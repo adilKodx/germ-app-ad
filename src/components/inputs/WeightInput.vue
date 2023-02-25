@@ -29,7 +29,7 @@
           <div class="space-bar"></div>
 
           <span class="weight-change-btn" v-if="!weight">
-            <span class="hidden sm:block">Wechsel zu Gramm</span>
+            <span class="hidden sm:block">Wijzig naar gram</span>
             <span class="sm:hidden flex items-center justify-center">
               g
 
@@ -37,7 +37,7 @@
             </span>
           </span>
           <span class="weight-change-btn h-full flex items-center" v-else>
-            <span class="hidden sm:block">Wechsel zu €</span>
+            <span class="hidden sm:block">Wijzig naar €</span>
             <span class="sm:hidden flex items-center justify-center">
               € <i class="ion-ios-arrow-down ml-2 -mb-1"></i
             ></span>
@@ -52,7 +52,7 @@
       style="margin-top: -20px"
     >
       <div>
-        Bitte gib einen gültigen Wert ein
+        Vul een geldige waarde in
       </div>
     </div>
   </div>

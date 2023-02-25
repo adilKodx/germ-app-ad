@@ -6,7 +6,7 @@
   >
     <slide-up-down :active="addFields && fields.length > 0">
       <div
-        class="hidden sm:flex text-sm sm:text-lg font-semibold mb-2 font-heading-2"
+        class="hidden sm:flex text-sm sm:text-lg font-semibold mb-2 header-6"
       >
         <div class="w-1/2">Naam</div>
         <div class="w-1/2 ml-8">Waarde</div>
@@ -22,7 +22,7 @@
         <div class="flex w-full relative flex-wrap sm:flex-no-wrap">
           <div class="w-full sm:w-1/2 sm:mr-4 mb-6 text-input transition-all">
             <label class="mb-2 sm:hidden flex justify-between">
-              <span class="font-semibold text-gray ">Naam</span>
+              <span class="font-semibold text-gray header-6">Naam</span>
 
               <span>
                 <i

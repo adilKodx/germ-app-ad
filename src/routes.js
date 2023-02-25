@@ -172,11 +172,9 @@ const routes = [
   //     window.location = `http://localhost:3001/bereken`
   //   }
   // },
- 
-  
   // { path: '*', 
   //   beforeEnter (to) {
-  //     if(window.location.href !== 'https://secure.zakat-deutschland.de/' && window.location.href !== 'http://localhost:3000/' && window.location.href !== 'http://localhost:3001/' && window.location.href !== 'http://localhost:5000/' && window.location.href !== 'https://calculator.tahiramjad.com/'){
+  //     if(window.location.href !== 'http://secure.zakat-deutschland.de/' && window.location.href !== 'http://localhost:3000/' && window.location.href !== 'http://localhost:3001/' && window.location.href !== 'http://localhost:5000/' && window.location.href !== 'https://calculator.tahiramjad.com/'){
   //       window.location = `${window.location.origin}/404`
   //     }
   //   }

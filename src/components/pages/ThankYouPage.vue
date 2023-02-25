@@ -129,7 +129,7 @@ import * as Cookies from "js-cookie";
 import { deliveryFeeText, paymentTypes } from "../../utils/GlobalVars";
 import _ from "lodash";
 import { roundToTwo, numberWithCommas } from "../../utils/helpers";
-import queryString from "query-string";
+// import queryString from "query-string";
 
 export default {
   name: "ThankYouPage",
@@ -196,17 +196,17 @@ export default {
     if (localStorage.getItem("basket")) {
       this.localDonationTypes = JSON.parse(localStorage.getItem("basket"));
     }
-    let query = queryString.parse(location.search);
-    if (
-      typeof query.redirect_status !== "undefined" &&
-      query.redirect_status == "succeeded"
-    ) {
-      let payload = {
-        method: "IDEAL",
-        PI: query.payment_intent,
-      };
-      this.$store.dispatch("MarkPaymentInCMS", payload);
-    }
+    // let query = queryString.parse(location.search);
+    // if (
+    //   typeof query.redirect_status !== "undefined" &&
+    //   query.redirect_status == "succeeded"
+    // ) {
+    //   let payload = {
+    //     method: "IDEAL",
+    //     PI: query.payment_intent,
+    //   };
+    //   this.$store.dispatch("MarkPaymentInCMS", payload);
+    // }
   },
   beforeRouteLeave(to, from, next) {
     this.$store.dispatch("clearStore");

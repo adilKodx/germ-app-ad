@@ -12,9 +12,10 @@ h6,
 .bold-dark,
 .header,
 .font-heading-2 {
-  font-family: $font-headers;
-
-  
+  font-family: $font-headers; 
+}
+span {
+  font-family: $font-body
 }
 // .bold-dark {
 //   font-family: $font-headers,Helvetica,Arial,Lucida,sans-serif;
@@ -93,6 +94,10 @@ h6,
 }
 .header-6 {
   @apply text-black;
+  font-weight: 600;
+}
+.header-7 {
+  @apply text-red-300;
   font-weight: 600;
 }
 
